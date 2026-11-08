@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/sakilunshu/桌面/test_cmake/ROIcut.cpp" "CMakeFiles/opencv_test.dir/ROIcut.cpp.o" "gcc" "CMakeFiles/opencv_test.dir/ROIcut.cpp.o.d"
+  "/home/sakilunshu/桌面/test_cmake/cv_test.cpp" "CMakeFiles/opencv_test_v1.dir/cv_test.cpp.o" "gcc" "CMakeFiles/opencv_test_v1.dir/cv_test.cpp.o.d"
   )
 
 # Targets to which this target links.

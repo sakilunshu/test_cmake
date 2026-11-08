@@ -117,41 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named opencv_test
+# Target rules for targets named opencv_test_v1
 
 # Build rule for target.
-opencv_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 opencv_test
-.PHONY : opencv_test
+opencv_test_v1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 opencv_test_v1
+.PHONY : opencv_test_v1
 
 # fast build rule for target.
-opencv_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/build
-.PHONY : opencv_test/fast
+opencv_test_v1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencv_test_v1.dir/build.make CMakeFiles/opencv_test_v1.dir/build
+.PHONY : opencv_test_v1/fast
 
-ROIcut.o: ROIcut.cpp.o
-.PHONY : ROIcut.o
+cv_test.o: cv_test.cpp.o
+.PHONY : cv_test.o
 
 # target to build an object file
-ROIcut.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/ROIcut.cpp.o
-.PHONY : ROIcut.cpp.o
+cv_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencv_test_v1.dir/build.make CMakeFiles/opencv_test_v1.dir/cv_test.cpp.o
+.PHONY : cv_test.cpp.o
 
-ROIcut.i: ROIcut.cpp.i
-.PHONY : ROIcut.i
+cv_test.i: cv_test.cpp.i
+.PHONY : cv_test.i
 
 # target to preprocess a source file
-ROIcut.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/ROIcut.cpp.i
-.PHONY : ROIcut.cpp.i
+cv_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencv_test_v1.dir/build.make CMakeFiles/opencv_test_v1.dir/cv_test.cpp.i
+.PHONY : cv_test.cpp.i
 
-ROIcut.s: ROIcut.cpp.s
-.PHONY : ROIcut.s
+cv_test.s: cv_test.cpp.s
+.PHONY : cv_test.s
 
 # target to generate assembly for a file
-ROIcut.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/ROIcut.cpp.s
-.PHONY : ROIcut.cpp.s
+cv_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencv_test_v1.dir/build.make CMakeFiles/opencv_test_v1.dir/cv_test.cpp.s
+.PHONY : cv_test.cpp.s
 
 # Help Target
 help:
@@ -161,10 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... opencv_test"
-	@echo "... ROIcut.o"
-	@echo "... ROIcut.i"
-	@echo "... ROIcut.s"
+	@echo "... opencv_test_v1"
+	@echo "... cv_test.o"
+	@echo "... cv_test.i"
+	@echo "... cv_test.s"
 .PHONY : help
 
 
