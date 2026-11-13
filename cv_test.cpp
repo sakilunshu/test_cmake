@@ -20,15 +20,15 @@ int main(){
 
     //颜色阈值分割
     Mat mask;
-    Scalar lowerBound(80, 100, 150);
+    Scalar lowerBound(80, 100, 100);
     Scalar upperBound(130, 255, 255);
 
     //使用 inRange函数进行颜色分割
     inRange(hsv, lowerBound, upperBound, mask);
 
     //形态学操作
-    Mat kernel = getStructuringElement(MORPH_RECT, Size(3, 3));
-    morphologyEx(mask, mask, MORPH_OPEN, kernel);
+    Mat kernel = getStructuringElement(MORPH_RECT, Size(1, 7));
+    morphologyEx(mask, mask, MORPH_CLOSE, kernel);
     imshow("Mask",mask);
 
     //寻找轮廓
@@ -41,7 +41,7 @@ int main(){
         //计算面积
         double area = contourArea(contours[i]);
         //不要不符合面积要求的轮廓
-        if (area > 10 && area < 5000){
+        if (area > 10 && area < 2000){
             RotatedRect rect = minAreaRect(contours[i]);//带旋转角度的框
             //求最小外接矩形
             float width = rect.size.width;
@@ -57,7 +57,7 @@ int main(){
             cout << "Area: " << area << ", Width: " << width << ", Height: " << height << ", Ratio: " << ratio << endl;
 
             //长宽比过滤
-            if (ratio > 2.0 && ratio < 10.0){
+            if (ratio > 1.5 && ratio < 10.0){
                 //如果满足条件，绘制轮廓
                 light_bars.push_back(rect);
 
@@ -71,6 +71,9 @@ int main(){
             }
         }    
     }
+
+    float max_armor_area = 0;
+    RotatedRect best_bar1,best_bar2;
 
     //外层循环，代表第一个灯条
     for (size_t i = 0;i< light_bars.size();i++){
@@ -92,13 +95,19 @@ int main(){
 
 
             if (height_diff < 20 && x_diff < 200 && y_diff < x_diff * 0.5){
+                Point2f armor_center = (center1+center2)/2.0;
+                float armor_area = bar1.size.area()+bar2.size.area();
                 //如果满足条件，绘制连接线
                 line(result_img, center1, center2, Scalar(0, 0, 255), 2);
 
-                Point2f armor_center = (center1 + center2) / 2;
+               if(armor_area > max_armor_area){
+                max_armor_area=armor_area;
+                best_bar1 = bar1;
+                best_bar2 = bar2;
+               }
 
                 int roi_width = x_diff;
-                int roi_height = max(h1, h2) * 1.2;
+                int roi_height = max(h1, h2) * 2.0;
 
                 int roi_x = armor_center.x - roi_width / 2;
                 int roi_y = armor_center.y - roi_height / 2;
@@ -117,12 +126,12 @@ int main(){
             }
         }
         
-    }
+    }  
 
     cv::imshow("Original", image);
     cv::imshow("Result - Light Bars",result_img);
     cv::imshow("HSV Mask", mask);
 
-    waitKey(0);
+    cv::waitKey(0);
     return 0;
 }
